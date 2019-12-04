@@ -50,6 +50,8 @@ public:
 				prev = t;
 			}
 
+			//what ever the node that is picked from the min heap, insert next element
+			//if next element is null then place last element to 0 and remove the last element from vector.
 			heap[0] = heap[0]->next;
 			if (heap[0] == nullptr){
 				heap[0] = heap[heap.size() - 1];

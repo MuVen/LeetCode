@@ -4,17 +4,19 @@ public:
         if(x < 0)
             return false;
         
-        x = abs(x);
-        int x1 = 0, xt = x, d = 0;
+        int d = 0;
+		//take long variable and then check if value greater than 
+		//INT_MAX return false.
+		long int x1 = 0;
+		long int xc = x;
         while(x){
             d = x % 10;
-            if(x1 == INT_MAX/10 && d > INT_MAX%10)
-                return false;
-            if(x1 > INT_MAX/10)
-                return false;
             x1 = x1 * 10 + d;
+			if(x1 > INT_MAX)
+				return false;
             x = x / 10;
         }
-        return xt == x1;
+        
+        return xc == x1;
     }
 };

@@ -4,6 +4,7 @@ public:
         if(numRows == 1)
             return s;
         
+		//whenever row reaches bottom or top modify the flag.
         unordered_map<int,string> map;
         int i = 0, row = 0;
         bool down = true;

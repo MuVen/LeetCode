@@ -6,6 +6,7 @@ class Solution {
 	vector<int> vec;
 	int vsize;
 public:
+    //map numbers to words.
 	void init(){
         map[2]="abc";
         map[3]="def";
@@ -29,6 +30,7 @@ public:
 		for (int i = 0; s[i] != '\0'; i++){
 			temp += s[i];
 			findString(index + 1, temp);
+            //backtracking 
 			temp = temp.substr(0, slen);
 		}
 	}

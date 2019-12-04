@@ -1,7 +1,7 @@
 class Solution {
     vector<vector<char>> ivboard;
 public:
-    	bool checkIsValid(int row, int col, int val) {
+    bool checkIsValid(int row, int col, int val) {
 		int hcount = 0;
 		for (int j = 0; j < 9; j++) {
 			if (ivboard[row][j] == val)

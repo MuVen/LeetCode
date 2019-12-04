@@ -16,3 +16,12 @@ public:
        }
     }
 };
+/*
+	     top	
+	left	right
+	    bottom
+		
+	lo f
+	l lo
+
+*/

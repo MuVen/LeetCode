@@ -16,6 +16,11 @@ public:
                 }else{
                     j++;
                 }
+				/*
+					closest sum to the given target. if you find target sum return the same.
+					else find the abs diff of target and sum. find the min value of diff and also
+					save closest sum to the target as well.
+				*/
                 int adiff = abs(target-sum);
                 if(adiff < ans){
                     ans = adiff;

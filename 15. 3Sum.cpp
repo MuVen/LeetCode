@@ -1,59 +1,39 @@
 class Solution {
+	vector<vector<int>> res;
 public:
-	bool isunique(vector<int>& nums){
-		int val = nums[0];
-		for (int i = 1; i < nums.size(); i++)
-			if (nums[i] != val)
-				return false;
-		return true;
-	}
-
-	vector<vector<int>> threeSum(vector<int>& nums) {
-		if(nums.size() == 0)
-            return vector<vector<int>>{};
-        
-        vector<vector<int>> result;
-		if (isunique(nums)){
-			if (nums[0] == 0 && nums.size() >= 3){
-				vector<int> v{ 0, 0, 0 };
-				result.push_back(v);
-				return result;
-			}
-			else{
-				return vector<vector<int>>{};
-			}
-		}
-
-		set<vector<int>> myset;
-		sort(nums.begin(), nums.end());
-		int size = nums.size();
-		for (int i = 0; i < size - 2; i++){
-			int a = nums[i];
-			int left = i + 1;
-			int right = size-1;
-			while (left < right){
-				int b = nums[left];
-				int c = nums[right];
-				if (a + b + c == 0){
-					vector<int> t;
-					t.push_back(a);
-					t.push_back(b);
-					t.push_back(c);
-					if(myset.find(t) == myset.end()){
-						result.push_back(t);
-						myset.insert(t);
-					}
-					left++;
-					right--;
-				}
-				else if (a + b + c < 0){
-					left++;
-				}
-				else if (a + b + c > 0){
-					right--;
+    vector<vector<int>> threeSum(vector<int>& nums) {
+		if(nums.size() < 3)
+			return res;
+		/*
+			-4 -1 -1 0 1 2
+			-2 0 0 2 2
+			
+			have to find unique triplets.
+			if nums[i] == x then the next value of i should such that nums[i] != x;
+			once you find the triplet nums[i] + nums[j] + nums[k] == 0;
+			then also move j & k to next value which is not equal to current nums[j] and nums[k].
+		*/
+        sort(nums.begin(), nums.end());
+		int i, j, k, sum;
+		for(i = 0; i < nums.size() - 2; i++){
+            if(i > 0 && nums[i] == nums[i-1])
+                continue;
+			j = i + 1, k = nums.size() -1;
+			while(j < k){
+				sum = nums[i]+nums[j]+nums[k];
+				if( sum == 0){
+					res.push_back({nums[i], nums[j], nums[k]});
+					while(j < k && nums[j] == nums[j+1]) j++;
+					while(j < k && nums[k] == nums[k-1]) k--;
+					j++;
+					k--;
+				}else if(sum > 0){
+					k--;
+				}else if(sum < 0){
+					j++;
 				}
 			}
 		}
-		return result;
-	}
+		return res;
+    }
 };

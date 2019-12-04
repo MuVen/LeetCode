@@ -7,6 +7,10 @@ public:
 		int ilen = s.length();
 		int low, high;
 		int maxLen = 1, start = 0;
+		//point expansion based solution
+		//expand the pallindrom validation around the variable i
+		//there are two cases here, even case, odd case.
+		//validate pallidrome at every step.
 		for (int i = 1; i < ilen; i++){
 			//even case
 			low = i - 1; high = i;

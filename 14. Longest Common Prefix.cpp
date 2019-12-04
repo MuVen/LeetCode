@@ -11,6 +11,11 @@ public:
             min = MIN(min, len);
         }
 
+		//find minimum length word.
+		//now try to compare all strings up to minimum length.
+		//if words break before the minimum length, update the 
+		//minimum length to where words have breaked.
+
         int k;
         string s1, s2;
 

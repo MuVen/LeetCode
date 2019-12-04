@@ -19,7 +19,13 @@ public:
         }
         return prev;
     }
-    
+    /*
+		this program is same as reverse node in k pairs. instead of k here we pass 2.
+		if node reaches end before the k nodes we return head.
+		now we reverse head till node.
+		head->next = now call swappairs for node.
+		return reversedlist;
+	*/
     ListNode* swapPairs(ListNode* head) {
         ListNode* node = head;
         for(int i = 1; i <= 2; i++){

@@ -1,65 +1,39 @@
 class Solution {
 public:
     int myAtoi(string str) {
-        bool isnegative = false;
-        long long int num = 0;
-        bool isnumbercaptured = false;
-        bool isplus = false;
-        int maxnum = 214748364;
-        int maxdigit = 0;
-
-        for(int i = 0; str[i] != '\0'; i++){
-            if(str[i] == ' '){
-                if(isnegative || isplus || isnumbercaptured)
-                   return isnegative ? num*-1 : num;
-                continue;
-            }
-            if(str[i] == '+'){
-                if(isplus)
-                    return isnegative ? num*-1 : num;
-                if(i >= 1 && str[i-1]=='-')
-                    return isnegative ? num*-1 : num;
-                if(isnumbercaptured)
-                    return isnegative ? num*-1 : num;
-                isplus = true;
-                continue;
-            }
-            if(str[i] =='-'){
-                if(isnegative)
-                    return isnegative ? num*-1 : num;
-                if(i >= 1 && str[i-1] == '+')
-                    return isnegative ? num*-1 : num;
-                if(isnumbercaptured)
-                    return isnegative ? num*-1 : num;
-                isnegative = true;
-                continue;
-            }
-            
-            maxdigit = isnegative ? 8 : 7;
-            
-            if(str[i] >= '0' && str[i] <= '9'){
-                if(num > maxnum)
-                    return isnegative ? INT_MIN : INT_MAX;
-                int cd = (str[i]-'0');
-                if(num == maxnum && cd > maxdigit)
-                    return isnegative ? INT_MIN : INT_MAX;
-                num = num*10 + cd;
-                isnumbercaptured = true;
-                continue;
-            }
-            if(!(str[i] >= '0' && str[i] <= '9')){
-                break;
-            }
-        }
-        
-        if(isnegative)
-            num = num * -1;
-        
-        if(num < INT_MIN)
-            num = INT_MIN;
-        else if(num > INT_MAX)
-            num = INT_MAX;
-        
-        return num;
+        int len = str.length();
+		if(len == 0)
+			return 0;
+		//skip trailing space.
+        int i = 0;
+		while(str[i] == ' '){
+			i++;
+		}
+		
+		//findout the sign.
+		long int num = 0;
+		int sign = 1;
+		if(str[i] == '-'){
+			sign = sign * -1;
+			i++;
+		}else if(str[i] == '+'){
+			i++;
+		}
+		
+		//declare the num as long, so whenever num >= INT_MAX return INT_MAX.
+		//if num <= INT_MIN then return INT_MIN.
+		//if other than number you encounter return the result.
+		//return number x sign.
+		for(; str[i] != '\0'; i++){
+            if(str[i] < '0' || str[i] > '9')
+                return num * sign;
+			num = num * 10 + (str[i]-'0');
+            cout<<num<<endl;
+			if(sign == 1 && num >= INT_MAX)
+				return INT_MAX;
+			else if(sign == -1 && -num <= INT_MIN)
+				return INT_MIN;
+		}
+        return num * sign;
     }
 };

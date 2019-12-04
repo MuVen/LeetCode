@@ -13,10 +13,15 @@ public:
     void remove(int n){
         ListNode* temp = thead;
         ListNode* first = thead;
+		//move temp by n steps
         while(n--){
             temp = temp->next;
         }
         ListNode* prev = nullptr;
+		//now move temp && first step by step. 
+		//when temp becomes nullptr, we have to remove first node.
+		//hook first prev with first next
+		//if temp == null && prev == null then remove the head.
         while(temp){
             prev = first;
             first = first->next;
